@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>完整的demo演示</title>
+        <style>
+            .show {
+                display: block !important;
+            }
+            
+            .hide {
+                display: none;
+            }
+
+            #wx-login {
+                width: 300px;
+                height: 300px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            #wx-qr {
+                width: 300px;
+                height: 300px;
+                margin: 0 auto;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+        <div class="gua-main">
+            <div id="wx-login">
+                微信登陆
+            </div>
+            <div id="wx-qr" class="hide">
+                二维码
+            </div>
+        </div>
+        <script>
+            var log = console.log.bind(console)
+
+            var e = function(selector) {
+                var element = document.querySelector(selector)
+                return element
+            }
+
+            var obj = new WxLogin({
+                id: "wx-qr",
+                appid: "wxa1804ea84ac918db",
+                scope: "snsapi_login",
+                redirect_uri: "https://sanofi-dev.login.cn.janrain.com/",
+                state: "6666",
+                style: "black",
+                href: ""
+            })
+
+            var d = e('.gua-main')
+
+            var login = e('#wx-login')
+
+            var qr = e('#wx-qr')
+
+            log('login', login)
+
+            log('qr', qr)
+
+            d.addEventListener('click', function(event) {
+                log("鼠标点击")
+
+                login.classList.add('hide')
+
+                qr.classList.remove('hide')
+            })
+        </script>
+    </body>
+</html>
